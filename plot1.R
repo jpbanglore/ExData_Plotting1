@@ -1,0 +1,7 @@
+dtime <- difftime(as.POSIXct("2007-02-03"), as.POSIXct("2007-02-01"),units="mins")
+rowsToRead <- as.numeric(dtime)
+DT <- fread("household_power_consumption.txt",skip="1/2/2007", nrows = rowsToRead, na.strings = c("?", ""))
+setnames(DT, colnames(fread("household_power_consumption.txt", nrows=0)))
+hist(DT$Global_active_power, col="red", main="Global Active Power",xlab="Global Active Power (kilowatts)")
+dev.copy(png, file="plot1.png")
+dev.off()
